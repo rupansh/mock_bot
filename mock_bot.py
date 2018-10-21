@@ -19,6 +19,8 @@ async def send_welcome(message: types.Message):
 @dp.message_handler(commands=['mock'])
 async def mock(message: types.Message):
     if message.reply_to_message:
+        for mocked in glob.glob("mocked*"):
+            os.remove(mocked) 
         origtext = message.reply_to_message.text
         mocked = spongemock.mock(origtext)
         randint = random.randint(1, 699)
